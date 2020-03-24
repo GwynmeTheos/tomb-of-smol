@@ -1,4 +1,4 @@
 @ECHO OFF
 
-PYTHON engine.py
+PYTHON python\start.py
 PAUSE
