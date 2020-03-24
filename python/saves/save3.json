@@ -1,0 +1,18 @@
+{
+    "written": false,
+    "name": "",
+    "playerClass": "",
+    "difficulty": "",
+    "level": 0,
+    "maxHP": 0,
+    "currentHP": 0,
+    "maxMP": 0,
+    "currentMP": 0,
+    "strength": 0,
+    "dexterity": 0,
+    "intelligence": 0,
+    "skills": [],
+    "weapon": "",
+    "armor": "",
+    "accessory": ""
+}
