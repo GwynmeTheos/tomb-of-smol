@@ -249,4 +249,3 @@ def DataLookup(jsonDict):
         return "No save data."
     else:
         return str(jsonDict["name"]) + " - Level " + str(jsonDict["level"])
-

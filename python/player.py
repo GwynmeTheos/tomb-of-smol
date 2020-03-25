@@ -4,18 +4,19 @@ class Player():
     name = ""
     playerClass = ""
     difficulty = ""
-    level = 1
-    maxHP = 10
-    currentHP = 10
-    maxMP = 10
-    currentMP = 10
-    strength = 2
-    dexterity = 2
-    intelligence = 2
+    level = 0
+    maxHP = 0
+    currentHP = 0
+    maxMP = 0
+    currentMP = 0
+    strength = 0
+    dexterity = 0
+    intelligence = 0
     skills = {}
     weapon = ''
     armor = ''
     accessory = ''
+    experience = 0
 
     def __init__(self, _name, _playerClass, _difficulty, _level, _strength, _dexterity, _intelligence, _baseHP, _currentHP, _baseMP, _currentMP, _skills, _weapon, _armor, _accessory):
         self.name = _name
