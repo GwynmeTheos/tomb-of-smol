@@ -1,4 +1,4 @@
-import os, colorama, keyboard, engine, player
+import os, colorama, engine, player, json
 
 def Start():
     os.system("CLS")
@@ -10,7 +10,6 @@ def Start():
     print()
     print("(" + colorama.Style.BRIGHT +"N" + colorama.Style.RESET_ALL + ")ew Game")
     print("(" + colorama.Style.BRIGHT +"L" + colorama.Style.RESET_ALL + ")oad Game")
-    print("(" + colorama.Style.BRIGHT +"O" + colorama.Style.RESET_ALL + ")ptions")
     print("(" + colorama.Style.BRIGHT +"Q" + colorama.Style.RESET_ALL + ")uit")
     print()
     print("Input a highlighted key.")
@@ -23,12 +22,8 @@ def Start():
             engine.StateController(user)
                 
         elif selection == 'l':
-            # user = LoadGame()
-            # engine.StateController(user)
-            continue
-
-        elif selection == 'o':
-            Options()
+            user = LoadGame()
+            engine.StateController(user)
             continue
                 
         elif selection == 'q':
@@ -36,8 +31,6 @@ def Start():
         
         else: 
             continue
-
-
 
 def NewGameStart():
     os.system("CLS")
@@ -56,8 +49,10 @@ def NewGameStart():
     input()
 
     os.system("CLS")
+    newPlayerDict = {}
     print("What's your name: ", end="")
-    name = input()
+    newPlayerDict["name"] = input()
+
     
     os.system("CLS")
     print("Choose your class:")
@@ -91,68 +86,78 @@ def NewGameStart():
     selection = str(input()).lower()
     while True:
         if selection == 'w':
-            playerClass = "Wizard"
-            weapon = "Staff"
-            armor = "Robes"
-            accessory = ""
-            skills = {"Skills"}
-            strength = 1
-            dexterity = 1
-            intelligence = 3
-            baseHP = 6
-            baseMP = 12
+            newPlayerDict["playerClass"] = "Wizard"
+            newPlayerDict["weapon"] = "Staff"
+            newPlayerDict["armor"] = "Robes"
+            newPlayerDict["accessory"] = ""
+            newPlayerDict["skills"] = {"Fireball"}
+            newPlayerDict["strength"] = 1
+            newPlayerDict["dexterity"] = 1
+            newPlayerDict["intelligence"] = 3
+            newPlayerDict["baseHP"] = 6
+            newPlayerDict["baseMP"] = 12
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
 
         elif selection == 'f':
-            playerClass = "Fighter"
-            weapon = "Short Sword"
-            armor = ""
-            accessory = "Shield"
-            skills = {"Cleave"}
-            strength = 2
-            dexterity = 2
-            intelligence = 1
-            baseHP = 12
-            baseMP = 6
+            newPlayerDict["playerClass"] = "Fighter"
+            newPlayerDict["weapon"] = "Short Sword"
+            newPlayerDict["armor"] = ""
+            newPlayerDict["accessory"] = "Shield"
+            newPlayerDict["skills"] = {"Cleave"}
+            newPlayerDict["strength"] = 2
+            newPlayerDict["dexterity"] = 2
+            newPlayerDict["intelligence"] = 1
+            newPlayerDict["baseHP"] = 12
+            newPlayerDict["baseMP"] = 6
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
         
         elif selection == 't':
-            playerClass = "Thief"
-            weapon = "Dagger"
-            armor = ""
-            accessory = "Buckler"
-            skills = {"Parry", "Lockpick"}
-            strength = 1
-            dexterity = 2
-            intelligence = 2
-            baseHP = 8
-            baseMP = 8
+            newPlayerDict["playerClass"] = "Thief"
+            newPlayerDict["weapon"] = "Dagger"
+            newPlayerDict["armor"] = ""
+            newPlayerDict["accessory"] = "Buckler"
+            newPlayerDict["skills"] = {"Parry", "Lockpick"}
+            newPlayerDict["strength"] = 1
+            newPlayerDict["dexterity"] = 2
+            newPlayerDict["intelligence"] = 2
+            newPlayerDict["baseHP"] = 8
+            newPlayerDict["baseMP"] = 8
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
 
         elif selection == 'c':
-            playerClass = "Cleric"
-            weapon = "Mace"
-            armor = ""
-            accessory = "Holy Symbol"
-            skills = {"Cure Wounds"}
-            strength = 2
-            dexterity = 1
-            intelligence = 2
-            baseHP = 8
-            baseMP = 10
+            newPlayerDict["playerClass"] = "Cleric"
+            newPlayerDict["weapon"] = "Mace"
+            newPlayerDict["armor"] = ""
+            newPlayerDict["accessory"] = "Holy Symbol"
+            newPlayerDict["skills"] = {"Cure Wounds"}
+            newPlayerDict["strength"] = 2
+            newPlayerDict["dexterity"] = 1
+            newPlayerDict["intelligence"] = 2
+            newPlayerDict["baseHP"] = 8
+            newPlayerDict["baseMP"] = 10
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
         
         elif selection == 'a':
-            playerClass = "Archer"
-            weapon = "Short Bow"
-            armor = ""
-            accessory = "Arrows"
-            skills = {"Scout"}
-            strength = 1
-            dexterity = 3
-            intelligence = 1
-            baseHP = 10
-            baseMP = 8
+            newPlayerDict["playerClass"] = "Archer"
+            newPlayerDict["weapon"] = "Short Bow"
+            newPlayerDict["armor"] = ""
+            newPlayerDict["accessory"] = "Arrows"
+            newPlayerDict["skills"] = {"Scout"}
+            newPlayerDict["strength"] = 1
+            newPlayerDict["dexterity"] = 3
+            newPlayerDict["intelligence"] = 1
+            newPlayerDict["baseHP"] = 10
+            newPlayerDict["baseMP"] = 8
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
 
         else: 
@@ -174,28 +179,91 @@ def NewGameStart():
     selection = str(input()).lower()
     while True:
         if selection == 'e':
-            difficulty = "easy"
+            newPlayerDict["difficulty"] = "easy"
             break
         
         elif selection == 'n':
-            difficulty = "normal"
+            newPlayerDict["difficulty"] = "normal"
             break
         
         elif selection == 'h':
-            difficulty = "hard"
+            newPlayerDict["difficulty"] = "hard"
             break
         
         else: 
             continue
+    
+    newPlayerDict["level"] = 1
+    newPlayerDict["experience"], newPlayerDict["gold"] = 0, 0
+    newPlayerDict["inventory"] = []
+    newPlayerDict["forgeLevel"], newPlayerDict["wardrobeLevel"], newPlayerDict["jewelryBoxLevel"] = 0, 0, 0
+    newPlayerDict["bedLevel"], newPlayerDict["altarLevel"] = 0, 0
 
-    newPlayer = player.Player(name, playerClass, difficulty, 1, strength, dexterity, intelligence, baseHP, baseHP, baseMP, baseMP, skills, weapon, armor, accessory)
+    newPlayer = player.Player(newPlayerDict)
     return newPlayer
 
-
-
 def LoadGame():
-    pass
-
-def Options():
     os.system("CLS")
 
+    savefile0 = open("python\\saves\\save0", "r")
+    savedata0 = json.load(savefile0)
+    savefile1 = open("python\\saves\\save1", "r")
+    savedata1 = json.load(savefile1)
+    savefile2 = open("python\\saves\\save2", "r")
+    savedata2 = json.load(savefile2)
+    savefile3 = open("python\\saves\\save3", "r")
+    savedata3 = json.load(savefile3)
+    savefile4 = open("python\\saves\\save4", "r")    
+    savedata4 = json.load(savefile4)
+    savefile5 = open("python\\saves\\save5", "r")
+    savedata5 = json.load(savefile5)
+
+    print("Select a save: ")
+    print()
+    print("File ("+ colorama.Style.BRIGHT + "0" + colorama.Style.RESET_ALL +")")
+    print(DataLookup(savedata0))
+    print()
+    print("File ("+ colorama.Style.BRIGHT + "1" + colorama.Style.RESET_ALL +")")
+    print(DataLookup(savedata1))
+    print()
+    print("File ("+ colorama.Style.BRIGHT + "2" + colorama.Style.RESET_ALL +")")
+    print(DataLookup(savedata2))
+    print()
+    print("File ("+ colorama.Style.BRIGHT + "3" + colorama.Style.RESET_ALL +")")
+    print(DataLookup(savedata3))
+    print()
+    print("File ("+ colorama.Style.BRIGHT + "4" + colorama.Style.RESET_ALL +")")
+    print(DataLookup(savedata4))
+    print()
+    print("File ("+ colorama.Style.BRIGHT + "5" + colorama.Style.RESET_ALL +")")
+    print(DataLookup(savedata5))
+    print()
+
+    selection = str(input())
+    while True:
+        if selection == "0":
+            user = player.Player(savedata0)
+            return user
+        elif selection == "1":
+            user = player.Player(savedata1)
+            return user
+        elif selection == "2":
+            user = player.Player(savedata2)
+            return user
+        elif selection == "3":
+            user = player.Player(savedata3)
+            return user
+        elif selection == "4":
+            user = player.Player(savedata4)
+            return user
+        elif selection == "5":
+            user = player.Player(savedata5)
+            return user
+        else:
+            continue
+
+def DataLookup(jsonDict):
+    if jsonDict["written"] == False:
+        return "No save data."
+    else:
+        return str(jsonDict["name"]) + " - Level " + str(jsonDict["level"])
