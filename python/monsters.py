@@ -22,16 +22,16 @@ class Monster():
     def Attack(self):
         pass
 
-    def __del__(self):
+    def Death(self):
         print("Die monster, you do not belong in this world.")
         pass
 
 
 class Goblin(Monster):
     
-    def __init__(self, playerLevel)
+    def __init__(self, playerLevel):
         self.name = "Goblin"
-        super().__init__(2, 2, 1)
+        super().__init__(2 + playerLevel, 2 + playerLevel, 1 + playerLevel)
         self.currentHP = random.randrange(4, 7) * playerLevel
         self.currentMP = random.randrange(2, 4) * playerLevel
 
@@ -41,4 +41,6 @@ class Goblin(Monster):
     def Attack(self):
         pass
 
-    def __del__(self)
+    def Death(self):
+        pass
+

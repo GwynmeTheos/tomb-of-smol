@@ -49,8 +49,10 @@ def NewGameStart():
     input()
 
     os.system("CLS")
+    newPlayerDict = {}
     print("What's your name: ", end="")
-    name = input()
+    newPlayerDict["name"] = input()
+
     
     os.system("CLS")
     print("Choose your class:")
@@ -84,68 +86,78 @@ def NewGameStart():
     selection = str(input()).lower()
     while True:
         if selection == 'w':
-            playerClass = "Wizard"
-            weapon = "Staff"
-            armor = "Robes"
-            accessory = ""
-            skills = {"Skills"}
-            strength = 1
-            dexterity = 1
-            intelligence = 3
-            baseHP = 6
-            baseMP = 12
+            newPlayerDict["playerClass"] = "Wizard"
+            newPlayerDict["weapon"] = "Staff"
+            newPlayerDict["armor"] = "Robes"
+            newPlayerDict["accessory"] = ""
+            newPlayerDict["skills"] = {"Fireball"}
+            newPlayerDict["strength"] = 1
+            newPlayerDict["dexterity"] = 1
+            newPlayerDict["intelligence"] = 3
+            newPlayerDict["baseHP"] = 6
+            newPlayerDict["baseMP"] = 12
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
 
         elif selection == 'f':
-            playerClass = "Fighter"
-            weapon = "Short Sword"
-            armor = ""
-            accessory = "Shield"
-            skills = {"Cleave"}
-            strength = 2
-            dexterity = 2
-            intelligence = 1
-            baseHP = 12
-            baseMP = 6
+            newPlayerDict["playerClass"] = "Fighter"
+            newPlayerDict["weapon"] = "Short Sword"
+            newPlayerDict["armor"] = ""
+            newPlayerDict["accessory"] = "Shield"
+            newPlayerDict["skills"] = {"Cleave"}
+            newPlayerDict["strength"] = 2
+            newPlayerDict["dexterity"] = 2
+            newPlayerDict["intelligence"] = 1
+            newPlayerDict["baseHP"] = 12
+            newPlayerDict["baseMP"] = 6
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
         
         elif selection == 't':
-            playerClass = "Thief"
-            weapon = "Dagger"
-            armor = ""
-            accessory = "Buckler"
-            skills = {"Parry", "Lockpick"}
-            strength = 1
-            dexterity = 2
-            intelligence = 2
-            baseHP = 8
-            baseMP = 8
+            newPlayerDict["playerClass"] = "Thief"
+            newPlayerDict["weapon"] = "Dagger"
+            newPlayerDict["armor"] = ""
+            newPlayerDict["accessory"] = "Buckler"
+            newPlayerDict["skills"] = {"Parry", "Lockpick"}
+            newPlayerDict["strength"] = 1
+            newPlayerDict["dexterity"] = 2
+            newPlayerDict["intelligence"] = 2
+            newPlayerDict["baseHP"] = 8
+            newPlayerDict["baseMP"] = 8
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
 
         elif selection == 'c':
-            playerClass = "Cleric"
-            weapon = "Mace"
-            armor = ""
-            accessory = "Holy Symbol"
-            skills = {"Cure Wounds"}
-            strength = 2
-            dexterity = 1
-            intelligence = 2
-            baseHP = 8
-            baseMP = 10
+            newPlayerDict["playerClass"] = "Cleric"
+            newPlayerDict["weapon"] = "Mace"
+            newPlayerDict["armor"] = ""
+            newPlayerDict["accessory"] = "Holy Symbol"
+            newPlayerDict["skills"] = {"Cure Wounds"}
+            newPlayerDict["strength"] = 2
+            newPlayerDict["dexterity"] = 1
+            newPlayerDict["intelligence"] = 2
+            newPlayerDict["baseHP"] = 8
+            newPlayerDict["baseMP"] = 10
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
         
         elif selection == 'a':
-            playerClass = "Archer"
-            weapon = "Short Bow"
-            armor = ""
-            accessory = "Arrows"
-            skills = {"Scout"}
-            strength = 1
-            dexterity = 3
-            intelligence = 1
-            baseHP = 10
-            baseMP = 8
+            newPlayerDict["playerClass"] = "Archer"
+            newPlayerDict["weapon"] = "Short Bow"
+            newPlayerDict["armor"] = ""
+            newPlayerDict["accessory"] = "Arrows"
+            newPlayerDict["skills"] = {"Scout"}
+            newPlayerDict["strength"] = 1
+            newPlayerDict["dexterity"] = 3
+            newPlayerDict["intelligence"] = 1
+            newPlayerDict["baseHP"] = 10
+            newPlayerDict["baseMP"] = 8
+            newPlayerDict["currentHP"] = newPlayerDict["baseHP"]
+            newPlayerDict["currentMP"] = newPlayerDict["baseMP"]
             break
 
         else: 
@@ -167,21 +179,24 @@ def NewGameStart():
     selection = str(input()).lower()
     while True:
         if selection == 'e':
-            difficulty = "easy"
+            newPlayerDict["difficulty"] = "easy"
             break
         
         elif selection == 'n':
-            difficulty = "normal"
+            newPlayerDict["difficulty"] = "normal"
             break
         
         elif selection == 'h':
-            difficulty = "hard"
+            newPlayerDict["difficulty"] = "hard"
             break
         
         else: 
             continue
-
-    newPlayer = player.Player(name, playerClass, difficulty, 1, strength, dexterity, intelligence, baseHP, baseHP, baseMP, baseMP, skills, weapon, armor, accessory)
+    
+    newPlayerDict["level"] = 1
+    newPlayerDict["experience"] = 0
+    newPlayerDict["inventory"] = []
+    newPlayer = player.Player(newPlayerDict)
     return newPlayer
 
 def LoadGame():
@@ -224,22 +239,22 @@ def LoadGame():
     selection = str(input())
     while True:
         if selection == "0":
-            user = player.Player(savedata0['name'], savedata0['playerClass'], savedata0['difficulty'], savedata0['level'], savedata0['maxHP'], savedata0['currentHP'], savedata0['maxMP'], savedata0['currentMP'], savedata0['strength'], savedata0['dexterity'], savedata0['intelligence'], set(savedata0['skills']), savedata0['weapon'], savedata0['armor'], savedata0['accessory'])
+            user = player.Player(savedata0)
             return user
         elif selection == "1":
-            user = player.Player(savedata1['name'], savedata1['playerClass'], savedata1['difficulty'], savedata1['level'], savedata1['maxHP'], savedata1['currentHP'], savedata1['maxMP'], savedata1['currentMP'], savedata1['strength'], savedata1['dexterity'], savedata1['intelligence'], set(savedata1['skills']), savedata1['weapon'], savedata1['armor'], savedata1['accessory'])
-            return user        
+            user = player.Player(savedata1)
+            return user
         elif selection == "2":
-            user = player.Player(savedata2['name'], savedata2['playerClass'], savedata2['difficulty'], savedata2['level'], savedata2['maxHP'], savedata2['currentHP'], savedata2['maxMP'], savedata2['currentMP'], savedata2['strength'], savedata2['dexterity'], savedata2['intelligence'], set(savedata2['skills']), savedata2['weapon'], savedata2['armor'], savedata2['accessory'])
+            user = player.Player(savedata2)
             return user
         elif selection == "3":
-            user = player.Player(savedata3['name'], savedata3['playerClass'], savedata3['difficulty'], savedata3['level'], savedata3['maxHP'], savedata3['currentHP'], savedata3['maxMP'], savedata3['currentMP'], savedata3['strength'], savedata3['dexterity'], savedata3['intelligence'], set(savedata3['skills']), savedata3['weapon'], savedata3['armor'], savedata3['accessory'])
+            user = player.Player(savedata3)
             return user
         elif selection == "4":
-            user = player.Player(savedata4['name'], savedata4['playerClass'], savedata4['difficulty'], savedata4['level'], savedata4['maxHP'], savedata4['currentHP'], savedata4['maxMP'], savedata4['currentMP'], savedata4['strength'], savedata4['dexterity'], savedata4['intelligence'], set(savedata4['skills']), savedata4['weapon'], savedata4['armor'], savedata4['accessory'])
+            user = player.Player(savedata4)
             return user
         elif selection == "5":
-            user = player.Player(savedata5['name'], savedata5['playerClass'], savedata5['difficulty'], savedata5['level'], savedata5['maxHP'], savedata5['currentHP'], savedata5['maxMP'], savedata5['currentMP'], savedata5['strength'], savedata5['dexterity'], savedata5['intelligence'], set(savedata5['skills']), savedata5['weapon'], savedata5['armor'], savedata5['accessory'])
+            user = player.Player(savedata5)
             return user
         else:
             continue

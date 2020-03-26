@@ -1,6 +1,5 @@
-import main, inventory, maps, monsters, player, shop, os
+import main, inventory, events, monsters, player, os
 
 def StateController(player):
     os.system("CLS")
-    for x in player:
-        print(x)
+    print("Under construction.")
