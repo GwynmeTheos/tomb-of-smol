@@ -194,8 +194,11 @@ def NewGameStart():
             continue
     
     newPlayerDict["level"] = 1
-    newPlayerDict["experience"] = 0
+    newPlayerDict["experience"], newPlayerDict["gold"] = 0, 0
     newPlayerDict["inventory"] = []
+    newPlayerDict["forgeLevel"], newPlayerDict["wardrobeLevel"], newPlayerDict["jewelryBoxLevel"] = 0, 0, 0
+    newPlayerDict["bedLevel"], newPlayerDict["altarLevel"] = 0, 0
+
     newPlayer = player.Player(newPlayerDict)
     return newPlayer
 

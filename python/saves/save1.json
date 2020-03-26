@@ -1,20 +1,32 @@
 {
     "written": false,
+
     "name": "",
     "playerClass": "",
     "difficulty": "",
+
     "level": 0,
+    "experience": 0,
+    "strength": 0,
+    "dexterity": 0,
+    "intelligence": 0,
+
     "maxHP": 0,
     "currentHP": 0,
     "maxMP": 0,
     "currentMP": 0,
-    "strength": 0,
-    "dexterity": 0,
-    "intelligence": 0,
+
     "skills": [],
+
     "weapon": "",
     "armor": "",
     "accessory": "",
-    "experience": 0,
-    "inventory": []
+    "inventory": [],
+    "gold": 0,
+
+    "forgeLevel" :0,
+    "wardrobeLevel" :0,
+    "jewelryBoxLevel" :0,
+    "bedLevel" :0,
+    "altarLevel" :0
 }
