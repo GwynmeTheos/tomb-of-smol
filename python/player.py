@@ -64,7 +64,8 @@ class Player():
         self.altarLevel = playerDataDict["alterLevel"]
 
         if self.weapon != "":
-            self.damageDie = engine.GetItemData(self.weapon, "weapon")
+            self.weapon = engine.GetItemData(self.weapon, "weapon")
+            self.damageDie = self.weapon["damageDie"]
         else:
             self.damageDie = 2
         if self.armor != "":
@@ -77,7 +78,15 @@ class Player():
             self.resistance += 2
     
     def Attack(self):
-        pass
+        if self.weapon == "":
+            attackDamage = random.randrange(1, self.damageDie + 1) + self.strength
+
+        elif self.weapon["type"] == "ranged":
+            attackDamage = random.randrange(1, self.damageDie + 1) + self.dexterity
+        elif self.weapon["type"] == "meele":
+            attackDamage = random.randrange(1, self.damageDie + 1) + self.strength
+
+        return attackDamage
 
     def TakeDamage(self, damage):
         damageTaken = (damage - self.resistance)
@@ -91,3 +100,10 @@ class Player():
 
     def UseSkill(self):
         pass
+
+    def LevelUp(self):
+        self.level += 1
+        pritn()
+        print("You have " + colorama.Style.BRIGHT + "2" + colorama.Style.RESET_ALL + " skill points left.")
+        print()
+        print("("+ colorama.Style.BRIGHT + S + colorama.Style.RESET_ALL +")trenght: " + str(self.strength) + " + " )

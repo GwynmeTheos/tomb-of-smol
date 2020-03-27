@@ -1,13 +1,13 @@
 {
-    "Short Sword": 6,
+    "Short Sword": {"damageDie": 6, "type": "melee"},
     
-    "Staff": 2,
+    "Staff": {"damageDie": 2, "type": "melee"},
     
-    "Mace": 6,
-    "Club": 4,
+    "Mace": {"damageDie": 6, "type": "melee"},
+    "Club": {"damageDie": 4, "type": "melee"},
 
-    "Dagger": 4,
+    "Dagger": {"damageDie": 4, "type": "melee"},
     
-    "Short Bow": 6,
-    "Crude Bow": 4
+    "Short Bow": {"damageDie": 6, "type": "ranged"},
+    "Crude Bow": {"damageDie": 4, "type": "ranged"}
 }

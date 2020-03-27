@@ -44,11 +44,10 @@ class Goblin(Monster):
         self.currentHP = random.randrange(4, 7) * playerLevel
         self.currentMP = random.randrange(2, 4) * playerLevel
         
-        self.weapon = random.choice(["Club", "Crude Bow"])
+        self.weapon = engine.GetItemData(random.choice(["Club", "Crude Bow"]), "weapon")
         self.armor = random.choice(["Loincloth", ""])
         self.accessory = random.choice(["", "", "", "Tribal Ornament"])
 
-        self.damageDie = engine.GetItemData(self.weapon, "weapon")
         if self.armor != "":
             self.resistance = engine.GetItemData(self.armor, "armor")
         if self.accessory == "Tribal Ornament":
@@ -58,10 +57,14 @@ class Goblin(Monster):
         return self.Attack()
 
     def Attack(self):
-        if self.weapon == "Club":
-            attackDamage = random.randrange(1, self.damageDie + 1) + self.strength
-        elif self.weapon == "Crude Bow":
-            attackDamage = random.randrange(1, self.damageDie + 1) + self.dexterity
+        if self.weapon == "":
+            attackDamage = random.randrange(1, self.weapon["damageDie"] + 1) + self.strength
+
+        elif self.weapon["type"] == "ranged":
+            attackDamage = random.randrange(1, self.weapon["damageDie"] + 1) + self.dexterity
+        elif self.weapon["type"] == "meele":
+            attackDamage = random.randrange(1, self.weapon["damageDie"] + 1) + self.strength
+
         
         return attackDamage
 
