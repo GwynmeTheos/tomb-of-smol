@@ -19,12 +19,13 @@ def Start():
     while True:
         if selection == 'n':
             user = NewGameStart()
-            engine.StateController(user)
-                
+            user = engine.StateController(user)
+            SaveGame(user)
+
         elif selection == 'l':
             user = LoadGame()
-            engine.StateController(user)
-            continue
+            user = engine.StateController(user)
+            SaveGame(user)
                 
         elif selection == 'q':
             exit()
@@ -83,8 +84,8 @@ def NewGameStart():
     print("Versatile class, can see enemy information.", end='\n')
     print()
 
-    selection = str(input()).lower()
     while True:
+        selection = str(input()).lower()
         if selection == 'w':
             newPlayerDict["playerClass"] = "Wizard"
             newPlayerDict["weapon"] = "Staff"
@@ -176,8 +177,8 @@ def NewGameStart():
     print("1.2x enemy scaling. More rewards.", end='\n')
     print()
 
-    selection = str(input()).lower()
     while True:
+        selection = str(input()).lower()
         if selection == 'e':
             newPlayerDict["difficulty"] = "easy"
             break
@@ -239,8 +240,8 @@ def LoadGame():
     print(DataLookup(savedata5))
     print()
 
-    selection = str(input())
     while True:
+        selection = str(input())
         if selection == "0":
             user = player.Player(savedata0)
             return user
@@ -267,3 +268,6 @@ def DataLookup(jsonDict):
         return "No save data."
     else:
         return str(jsonDict["name"]) + " - Level " + str(jsonDict["level"])
+
+def SaveGame(playerObject):
+    pass

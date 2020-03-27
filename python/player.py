@@ -61,7 +61,7 @@ class Player():
         self.wardrobeLevel = playerDataDict["wardrobeLevel"]
         self.jewelryBoxLevel = playerDataDict["jewelryBoxLevel"]
         self.bedLevel = playerDataDict["bedLevel"]
-        self.altarLevel = playerDataDict["alterLevel"]
+        self.altarLevel = playerDataDict["altarLevel"]
 
         if self.weapon != "":
             self.weapon = engine.GetItemData(self.weapon, "weapon")
@@ -103,7 +103,30 @@ class Player():
 
     def LevelUp(self):
         self.level += 1
-        pritn()
+        print()
         print("You have " + colorama.Style.BRIGHT + "2" + colorama.Style.RESET_ALL + " skill points left.")
         print()
-        print("("+ colorama.Style.BRIGHT + S + colorama.Style.RESET_ALL +")trenght: " + str(self.strength) + " + " )
+        print("("+ colorama.Style.BRIGHT + "S" + colorama.Style.RESET_ALL +")trenght: " + str(self.strength))
+        print()
+        print("("+ colorama.Style.BRIGHT + "D" + colorama.Style.RESET_ALL +")exterity: " + str(self.dexterity))
+        print()
+        print("("+ colorama.Style.BRIGHT + "I" + colorama.Style.RESET_ALL +")ntelligence: " + str(self.intelligence))
+
+        count = 0
+        while count < 2:
+            selection = str(input()).lower()
+            
+            if selection == "s":
+                self.strength += 1
+                count += 1
+            elif selection == "d":
+                self.dexterity += 1
+                count += 1
+            elif selection == "i":
+                self.intelligence += 1
+                count += 1
+            else:
+                continue
+    
+    def DisplayInventory(self):
+        return ("StarterRoom")
